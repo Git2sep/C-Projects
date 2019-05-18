@@ -1,0 +1,34 @@
+-------------------------------Chapter 1-----------------------------
+
+Width and Precision:
+--> %3.0f
+		3  means the float is at least 3 characters wide
+		.0 means there are 0 numbers after the decimal
+
+Macros:
+--> #define name replacement text
+--> #define LOWER 0
+		This defines a macro LOWER that is a constant to be used throughout your program
+		Notice there is no ';' to end it
+
+Input:
+
+	getchar(): 
+		to get each character you type in the terminal
+		Char and int can be interchanged
+	EOF:
+		end of file Integer
+	
+
+Output:
+
+	putchar(char c): 
+		prints the character given
+
+-------------------------------Chapter 2-----------------------------
+
+enum:
+--> A list of constant integer values
+--> enum 'name' { NAME1 = ?, NAME2 = ?, ... }
+--> enums are a convenient way to associate constant values with names
+--> alternative to #define, but safer because compiler checks it

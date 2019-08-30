@@ -1,4 +1,6 @@
--------------------------------Chapter 1-----------------------------
+Page: 75
+
+Chapter 1: -----------------------------
 
 Width and Precision:
 --> %3.0f
@@ -13,22 +15,40 @@ Macros:
 
 Input:
 
-	getchar(): 
+	getchar():
 		to get each character you type in the terminal
 		Char and int can be interchanged
 	EOF:
 		end of file Integer
-	
+	fgets():
+		Grabs a buffer from a specified location (file, stdin)
+	sscanf():
+		Searches for a specific data set within a buffer
 
 Output:
 
-	putchar(char c): 
+	putchar(char c):
 		prints the character given
+	printf():
+		Powerful. Most common
 
--------------------------------Chapter 2-----------------------------
+Chapter 2: -----------------------------
 
 enum:
 --> A list of constant integer values
 --> enum 'name' { NAME1 = ?, NAME2 = ?, ... }
 --> enums are a convenient way to associate constant values with names
 --> alternative to #define, but safer because compiler checks it
+
+Ternary Operator:
+	if (a > b)
+		z = a
+	else
+		z = b
+	IS EQUIVALENT TO:
+		z = (a > b) ? a : b
+
+Chapter 3: Control Flow--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+--> An expression becomes a statement when it is followed by a ";"
+--> "{}" group declarations and statements together into a block or compound statements

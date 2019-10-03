@@ -2,14 +2,11 @@
 
 void main()
 {
-  int a = 5;
-int b = 10;
-int *c_ptr = 0;
+  unsigned char ch;
+  unsigned short n;
 
-  c_ptr = &b;
-  a = *c_ptr + b;
-  (*c_ptr)++;
-  c_ptr++;	
+  n = 0b0110000001110000;
 
-  printf("a is %d, b is %d, c is %d\n", a, b, *c_ptr);
+  if ( !(n & 0x6000 ^ 0x6000) && !(n & 0x0888) && n & 0x0070 && n & 0x8001 ^ 0x8001 )
+    printf("%x\n", n);
 }

@@ -1,68 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
-
 #include "stack.h"
 
-struct Stack* init_stack(unsigned int max_size)
-{
-  struct Stack* stack = (struct Stack*)malloc(sizeof(struct Stack));
-  stack->max_size = max_size;
-  stack->top = -1;
-  stack->items = (int*)malloc(stack->max_size * sizeof(int));
-  return stack;
-}
-
-int is_full(struct Stack* stack)
-{
-    return stack->top == stack->max_size - 1;
-}
-
-int is_empty(struct Stack* stack)
-{
-  return stack->top == -1;
-}
-
-int push(struct Stack* stack, int to_add)
-{
-  if (is_full(stack))
-  {
-    printf("The stack is full!\n");
-    return -1;
-  }
-  stack->top++;
-  stack->items[stack->top] = to_add;
-  return to_add;
-}
-
-int pop(struct Stack* stack)
-{
-  if (is_empty(stack))
-  {
-    printf("The stack is empty! Unable to pop\n");
-    return -1;
-  }
-  int to_remove = stack->items[stack->top];
-  stack->top--;
-  return to_remove;
-}
-
-void display(struct Stack* stack)
-{
-  int i, cur = stack->top;
-  for (int i = stack->top; i >= 0; i--)
-  {
-    if (i == stack->top)
-    {
-      printf("\n\t%d\t<--- TOP\n", stack->items[i]);
-    }
-    else
-    {
-      printf("\t%d\n", stack->items[i]);
-    }
-  }
-  printf("\n");
-}
-
+/**
+  * This is an interactive terminal program that allows the user
+  * to create and manipulate a stack.
+  *
+  * Author: Thomas Haddy 10/15/19
+  */
 int main()
 {
   struct Stack* stack;
@@ -95,13 +40,24 @@ int main()
       case '1':
         printf("Enter the number you would like to add (int): ");
         scanf("%d", &to_add);
-        push(stack, to_add);
+        if (push(stack, to_add) == -1)
+        {
+          printf("The stack is full!\n");
+        }
+        else
+        {
+          printf("Pushed %d on the stack\n", stack->items[stack->top]);
+        }
         break;
       case '2':
         to_remove = pop(stack);
-        if (to_remove != -1)
+        if (to_remove == -1)
         {
-          printf("The stack popped off %d\n", to_remove);
+          printf("The stack is empty! Unable to pop\n");
+        }
+        else
+        {
+          printf("Popped %d off the stack\n", to_remove);
         }
         break;
       case '3':

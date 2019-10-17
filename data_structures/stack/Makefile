@@ -1,11 +1,11 @@
-stack: main.o stack.o
-	gcc -o stack main.o stack.o
+stack: main_stack.o stack.o
+	gcc -o stack main_stack.o stack.o
 
-main.o: main.c stack.h
-	gcc -c main.c
+main_stack.o: main_stack.c stack.h
+	gcc -c main_stack.c
 
 stack.o: stack.c
 	gcc -c stack.c
 
 clean:
-	rm -f stack main.o stack.o
+	rm -f stack main_stack.o stack.o

@@ -1,23 +1,23 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "stack.h"
+#include "queue.h"
 
 /**
   * This is an interactive terminal program that allows the user
-  * to create and manipulate a stack.
+  * to create and manipulate a queue.
   *
-  * Author: Thomas Haddy 10/15/19
+  * Author: Thomas Haddy 10/16/19
   */
 int main()
 {
-  struct Stack* stack;
+  Queue* queue;
+  char size_buffer[4];
   int max_size, to_add, to_remove;
-  char size_buffer[4], to_add_buffer[8];
   char user_in;
 
-  //Init the stack
-  printf("Welcome to creating a stack in C!\n");
-  printf("Please enter a size of the stack(Integer between 1-999): ");
+  //Init the queue
+  printf("Welcome to creating a queue in C!\n");
+  printf("Please enter a size of the queue(Integer between 1-999): ");
   fgets(size_buffer, sizeof(size_buffer), stdin);
   sscanf(size_buffer, "%d", &max_size);
   if (max_size <= 0)
@@ -25,10 +25,11 @@ int main()
     fprintf(stderr, "Not a valid size! Must be between 1 and 999. Exiting...\n");
     return 1;
   }
-  stack = init_stack(max_size);
 
-  //Ask user how they want to manipulate the stack
-  printf("\n(1) Push\n(2) Pop\n(3) Display\n(q) Quit\n");
+  queue = init_queue(max_size);
+
+  //Ask user how they want to manipulate the queue
+  printf("\n(1) Enqueue\n(2) Dequeue\n(3) Display\n(q) Quit\n");
   printf("Enter a number(1-3): ");
   user_in = getchar();
   while(user_in != 'q')
@@ -40,41 +41,42 @@ int main()
       case '1':
         printf("Enter the number you would like to add (int): ");
         scanf("%d", &to_add);
-        if (push(stack, to_add) == -1)
+        int added = enqueue(queue, to_add);
+        if (added == -1)
         {
-          printf("The stack is full!\n");
+          printf("The queue is full!\n");
         }
         else
         {
-          printf("Pushed %d on the stack\n", stack->items[stack->top]);
+          printf("Enqueued %d on the queue\n", added);
         }
         break;
       case '2':
-        to_remove = pop(stack);
+        to_remove = dequeue(queue);
         if (to_remove == -1)
         {
-          printf("The stack is empty! Unable to pop\n");
+          printf("The queue is empty! Unable to dequeue\n");
         }
         else
         {
-          printf("Popped %d off the stack\n", to_remove);
+          printf("Dequeued %d off the front of the queue\n", to_remove);
         }
         break;
       case '3':
-        display(stack);
+        display(queue);
         break;
     }
 
     //Clear stdin
     while ((getchar()) != '\n');
     //Ask again until 'q' is pressed
-    printf("\n(1) Push\n(2) Pop\n(3) Display\n(q) Quit\n");
+    printf("\n(1) Enqueue\n(2) Dequeue\n(3) Display\n(q) Quit\n");
     printf("Enter a number(1-3): ");
     user_in = getchar();
   }
 
   //Free allocated memory
-  free(stack->items);
-  free(stack);
+  free(queue->items);
+  free(queue);
   return 0;
 }

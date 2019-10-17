@@ -2,26 +2,26 @@
 #include <stdlib.h>
 #include "stack.h"
 
-struct Stack* init_stack(unsigned int max_size)
+Stack* init_stack(unsigned int max_size)
 {
-  struct Stack* stack = (struct Stack*)malloc(sizeof(struct Stack));
+  Stack* stack = (Stack*)malloc(sizeof(Stack));
   stack->max_size = max_size;
   stack->top = -1;
   stack->items = (int*)malloc(stack->max_size * sizeof(int));
   return stack;
 }
 
-int is_full(struct Stack* stack)
+int is_full(Stack* stack)
 {
     return stack->top == stack->max_size - 1;
 }
 
-int is_empty(struct Stack* stack)
+int is_empty(Stack* stack)
 {
   return stack->top == -1;
 }
 
-int push(struct Stack* stack, int to_add)
+int push(Stack* stack, int to_add)
 {
   if (is_full(stack))
   {
@@ -32,7 +32,7 @@ int push(struct Stack* stack, int to_add)
   return to_add;
 }
 
-int pop(struct Stack* stack)
+int pop(Stack* stack)
 {
   if (is_empty(stack))
   {
@@ -43,7 +43,7 @@ int pop(struct Stack* stack)
   return to_remove;
 }
 
-void display(struct Stack* stack)
+void display(Stack* stack)
 {
   int i, cur = stack->top;
   for (int i = stack->top; i >= 0; i--)

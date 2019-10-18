@@ -40,7 +40,7 @@ int main()
     {
       case '1':
         printf("Enter the number you would like to add (int): ");
-        scanf("%d", &to_add);
+        scanf(" %d", &to_add);
         int added = enqueue(queue, to_add);
         if (added == -1)
         {
